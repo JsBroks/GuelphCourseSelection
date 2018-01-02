@@ -1,6 +1,6 @@
 # Guelph Course Section Schedule Generator
-This program generators all possible schedules using course selection from the [University of Guelph](https://www.uoguelph.ca/).
-The purpose is to save time and to quickly find the best schedule that fits your needs.
+This program generators all possible schedules using course information from the [University of Guelph](https://www.uoguelph.ca/).
+Quickly find the best schedule that fits your needs.
 
 ## Table of Contents
 
@@ -20,8 +20,8 @@ The purpose is to save time and to quickly find the best schedule that fits your
 ### Installation/Usage
 1. Run `setup.py`.
 1. Search for Sections on [webadvisor](https://webadvisor.uoguelph.ca/).
-1. Download html of sections page.
-1. Place inside html_courses.
+1. Download html of section result page.
+1. Place inside `html_courses` folder.
 1. Run the `run.py` to execute the program.
 1. Open `options.xlsx` to view output.
 

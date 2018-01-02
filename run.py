@@ -12,7 +12,6 @@ import xlsxwriter
 
 # Global variables
 total = 0
-workbook = xlsxwriter.Workbook('out/options.xlsx')
 
 
 class Section:
@@ -177,8 +176,7 @@ def get_day_pos(day):
     return 'A'
 
 
-def create_option_menu(sections):
-    global workbook
+def create_option_menu(sections, workbook):
 
     days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     day_format = workbook.add_format({'bold': True, 'align': 'center'})
@@ -240,6 +238,7 @@ def main():
     logging.basicConfig(filename=None, level=logging.DEBUG)
 
     global total
+    workbook = xlsxwriter.Workbook('out/options.xlsx')
 
     sections = {}
     lengths = {}
@@ -316,12 +315,13 @@ def main():
         for value in values:
             value.print()
 
-    work(sections)
+    work(sections, workbook)
 
     print("\nTotal options found: " + str(total))
+    workbook.close()
 
 
-def work(sections, current=0, courses=None, path=[]):
+def work(sections, workbook, current=0, courses=None, path=[]):
     global total
 
     if courses is None:
@@ -342,15 +342,14 @@ def work(sections, current=0, courses=None, path=[]):
         #    s.print()
 
         total += 1
-        create_option_menu(path)
+        create_option_menu(path, workbook)
         return
 
     for section in sections[courses[current]]:
         path.append(section)
-        work(sections, current + 1, courses, path)
+        work(sections, workbook, current + 1, courses, path)
         del path[-1]
 
 
 if __name__ == '__main__':
     main()
-    workbook.close()
